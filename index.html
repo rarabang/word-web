@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f2eb" />
+    <title>Word Web — Make the connections</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <script src="./theme.js?v=20261025-night"></script>
+    <link rel="stylesheet" href="./styles.css?v=20261025-inline-connectors" />
+    <script defer src="./web-layout.js?v=20261025-page-overlay"></script>
+    <script defer src="./puzzles.js?v=20261025-page-overlay"></script>
+    <script defer src="./game.js?v=20261025-inline-connectors"></script>
+    <script defer src="./ui.js?v=20261025-compact"></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Word Web home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><b></b></span>word web</a>
+        <div class="topbar-right"><span class="daily-label"><span class="status-dot"></span> WORD PUZZLES</span><span class="date-label" id="date-label"></span><button class="text-button" id="help-button" type="button" aria-haspopup="dialog">? Help</button><button class="text-button" id="settings-button" type="button" aria-haspopup="dialog">Settings</button></div>
+      </header>
+
+      <section class="game-card" aria-label="Word connection puzzle">
+        <div class="game-topline"><div><p class="puzzle-kicker" id="puzzle-number">PUZZLE 01 <span>·</span> NATURE</p><h2 id="puzzle-title">The living world</h2><label class="puzzle-picker-label" for="puzzle-select">Change puzzle</label><select id="puzzle-select" class="puzzle-picker" aria-label="Choose a puzzle"></select></div><div class="connection-count"><strong id="connection-count">0</strong><span>connections</span></div></div>
+        <section class="link-label-picker" aria-label="Choose a link label">
+          <p class="label-picker-title">Choose a connector</p>
+          <div class="link-label-options" id="link-labels" role="group" aria-label="Available connectors"></div>
+          <p class="label-status" id="label-status" aria-live="polite">Choose a connector, then select two words</p>
+        </section>
+        <div class="game-stage">
+          <div class="board-viewport" id="board-viewport" tabindex="0" role="region" aria-label="Word web">
+            <div class="board-wrap" id="board-wrap">
+              <svg class="connections" id="connections" role="group" aria-label="Your connections"></svg>
+              <div class="word-board" id="word-board" aria-label="Words to connect"></div>
+            </div>
+          </div>
+        </div>
+        <label class="layout-picker" id="layout-picker" hidden>Layout
+          <select id="layout-select" aria-label="Puzzle layout"><option value="puzzle">Puzzle layout</option><option value="flowchart">Flowchart</option></select>
+        </label>
+        <p id="layout-status" class="board-view-hint" aria-live="polite" hidden></p>
+        <div class="board-view-controls" role="group" aria-label="Web view controls">
+          <button id="zoom-out" type="button" aria-label="Zoom out" title="Zoom out">−</button>
+          <output id="zoom-level" aria-live="polite" aria-label="Zoom level">100%</output>
+          <button id="zoom-in" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+          <button id="fit-view" type="button">Fit web</button>
+        </div>
+        <div class="game-actions"><button class="text-button" id="reset-button" type="button">Start over</button><button class="primary-button" id="check-button" type="button">Check my web <span aria-hidden="true">↗</span></button></div>
+
+      </section>
+
+      <footer><span>Made for the curious.</span><span>One word at a time <span aria-hidden="true">✳</span></span></footer>
+    </main>
+          <div class="result-overlay" id="result-overlay" hidden>
+            <section class="result-card" aria-label="Your web result">
+              <p class="eyebrow">YOUR WEB, DISCOVERED</p>
+              <div class="result" id="result" role="status" aria-live="polite" hidden></div>
+              <button class="primary-button" id="explore-pathway" type="button">Explore my pathway <span aria-hidden="true">→</span></button>
+              <button class="text-button" id="dismiss-result" type="button">Back to my web</button>
+            </section>
+          </div>
+          <section id="pathway-panel" class="pathway-panel" aria-label="Follow the pathway" hidden>
+            <div class="pathway-heading"><button id="pathway-drag" class="pathway-drag" type="button" aria-label="Move pathway card. Drag or use arrow keys." title="Drag to move · arrow keys when focused"><span aria-hidden="true">⠿</span> Follow the pathway</button><span id="pathway-count"></span></div>
+            <p id="pathway-sentence" class="pathway-sentence" role="status" aria-live="polite" aria-atomic="true"></p>
+            <div class="pathway-controls"><button id="pathway-play" type="button">Play</button><button id="pathway-next" type="button">Next connection</button><button id="show-result" type="button">View result</button><button id="pathway-exit" type="button">Exit</button></div>
+          </section>
+    <dialog class="utility-dialog" id="help-dialog" aria-labelledby="help-title">
+      <div class="dialog-heading"><h2 id="help-title">How to play</h2><button class="text-button" type="button" data-close-dialog autofocus>Close</button></div>
+      <h3>Making connections</h3>
+      <p>Find relationships between the words. Choose a connector, then drag from a source word to its destination, or select the two words in order. Arrowheads show the direction of each connection.</p>
+      <p>Select an existing connection’s label to change its connector. Repeat a linked pair to remove it. Press Escape to cancel a drag. When you’re ready, select <strong>Check my web</strong> to compare your connections and explore the pathway.</p>
+      <h3>Exploring the board</h3>
+      <p>The web adapts and fits automatically. Zoom in, then drag the background to explore. Select <strong>Fit web</strong> to see the whole web. Hover or focus a word or connection label for a larger preview.</p>
+      <h3>Keyboard shortcuts</h3>
+      <dl><dt>1–9, 0</dt><dd>Select a connector (when available).</dd><dt>W / A / S / D</dt><dd>Pan up / left / down / right.</dd><dt>Arrow keys</dt><dd>Pan while the board is focused.</dd><dt>+ / −</dt><dd>Zoom while the board is focused.</dd><dt>Home</dt><dd>Fit the web while the board is focused.</dd><dt>Escape</dt><dd>Cancel a drag or close an overlay.</dd></dl>
+    </dialog>
+    <dialog class="utility-dialog settings-dialog" id="settings-dialog" aria-labelledby="settings-title">
+      <div class="dialog-heading"><h2 id="settings-title">Settings</h2><button class="text-button" type="button" data-close-dialog autofocus>Close</button></div>
+      <div class="settings-row"><span>Sound effects</span><button class="text-button" id="sound-toggle" type="button" aria-pressed="true" title="Toy Box sound effects">Sound on</button></div>
+      <div class="settings-row"><label class="theme-picker" for="theme-select">Appearance <select id="theme-select"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div>
+    </dialog>
+    <div id="connector-menu" class="connector-menu" popover="auto" role="listbox" aria-label="Change connector"></div>
+    <div id="term-preview" class="term-preview" role="tooltip" hidden></div>
+    <svg id="connection-drag-preview" aria-hidden="true"><line id="connection-drag-line" /></svg>
+  </body>
+</html>

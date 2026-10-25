@@ -1,0 +1,10 @@
+{
+  "name": "word-web-game",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A small word relationship game",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "node --test tests/*.test.js"
+  }
+}
